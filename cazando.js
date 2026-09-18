@@ -12,24 +12,27 @@ const ANCHO_COMIDA=50;
 
 
 function iniciarJuego(){
-
-    gatoX = 225; 
+    // Center the cat on the 500x500 canvas
+    gatoX = 225;
     gatoY = 225;
-
+    
+    // Position food in the bottom right corner
     comidaX = 450;
     comidaY = 450;
-
+    
     graficarGato();
     graficarComida();
 }
 
-function graficarGato(){
-    ctx.fillStyle="pink";
-    ctx.fillRect(gatoX,gatoY,ANCHO_GATO,ALTO_GATO)
+function graficarRectangulo(x, y, ancho, alto, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, ancho, alto);
 }
 
+function graficarGato(){
+    graficarRectangulo(gatoX, gatoY, ANCHO_GATO, ALTO_GATO, "pink");
+}
 
 function graficarComida(){
-    ctx.fillStyle="violet";
-    ctx.fillRect(comidaX,comidaY,ANCHO_COMIDA,ALTO_COMIDA)
+    graficarRectangulo(comidaX, comidaY, ANCHO_COMIDA, ALTO_COMIDA, "violet");
 }
