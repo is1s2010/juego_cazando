@@ -65,5 +65,25 @@ function actualizarVista() {
     limpiarCanva(); 
     graficarGato(); 
     graficarComida();
+    detectarColision();
 
+}
+
+function detectarColision() {
+    if (gatoX < comidaX + ANCHO_COMIDA &&
+        gatoX + ANCHO_GATO > comidaX &&
+        gatoY < comidaY + ALTO_COMIDA &&
+        gatoY + ALTO_GATO > comidaY) {
+        
+        alert("¡Atrapaste la comida!"); 
+        
+        puntos += 1; 
+        document.getElementById("puntos").innerText = puntos; 
+        comidaX = Math.floor(Math.random() * (500 - ANCHO_COMIDA));
+        comidaY = Math.floor(Math.random() * (500 - ALTO_COMIDA));
+
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
+    }
 }
