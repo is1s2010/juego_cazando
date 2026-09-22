@@ -7,6 +7,7 @@ let comidaY = 0;
 let puntos = 0;
 let tiempo = 10;
 let intervaloTiempo;
+let juegoActivo = false;
 
 const ALTO_GATO=50;
 const ANCHO_GATO=50;
@@ -15,6 +16,8 @@ const ANCHO_COMIDA=50;
 
 
 function iniciarJuego(){
+    juegoActivo = true;
+
     gatoX = 225;
     gatoY = 225;
     
@@ -48,25 +51,32 @@ function limpiarCanva() {
 }
 
 function moverIzquierda() {
-    gatoX -= 10;
-    actualizarVista();
+    if (juegoActivo && gatoX > 0) {
+        gatoX -= 10;
+        actualizarVista();
+    }
 }
 
 function moverDerecha() {
-    gatoX += 10; 
-    actualizarVista();
+    if (juegoActivo && gatoX < 450) {
+        gatoX += 10; 
+        actualizarVista();
+    }
 }
 
 function moverArriba() {
-    gatoY -= 10; 
-    actualizarVista();
+    if (juegoActivo && gatoY > 0) {
+        gatoY -= 10; 
+        actualizarVista();
+    }
 }
 
 function moverAbajo() {
-    gatoY += 10; 
-    actualizarVista();
+    if (juegoActivo && gatoY < 450) {
+        gatoY += 10; 
+        actualizarVista();
+    }
 }
-
 function actualizarVista() {
     limpiarCanva(); 
     graficarGato(); 
@@ -102,9 +112,16 @@ function restarTiempo() {
 
     if (puntos >= 6) {
         clearInterval(intervaloTiempo); 
+        juegoActivo = false; // <-- Desactiva el juego
         alert("¡Ganador!"); 
     } else if (tiempo <= 0) {
         clearInterval(intervaloTiempo); 
+        juegoActivo = false; // <-- Desactiva el juego
         alert("Game Over"); 
     }
+}
+
+function reiniciarJuego() {
+    limpiarCanva();
+    iniciarJuego(); 
 }
