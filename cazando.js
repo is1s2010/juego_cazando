@@ -5,6 +5,8 @@ let gatoY = 0;
 let comidaX = 0;
 let comidaY = 0;
 let puntos = 0;
+let tiempo = 10;
+let intervaloTiempo;
 
 const ALTO_GATO=50;
 const ANCHO_GATO=50;
@@ -13,20 +15,21 @@ const ANCHO_COMIDA=50;
 
 
 function iniciarJuego(){
-    
     gatoX = 225;
     gatoY = 225;
     
-   
     comidaX = 450;
     comidaY = 450;
 
     puntos = 0;
+    tiempo = 10;
+    
+    clearInterval(intervaloTiempo); 
+    intervaloTiempo = setInterval(restarTiempo, 1000);
     
     graficarGato();
     graficarComida();
 }
-
 function graficarRectangulo(x, y, ancho, alto, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, ancho, alto);
@@ -91,4 +94,17 @@ function detectarColision() {
         graficarGato();
         graficarComida();
  }
+}
+
+function restarTiempo() {
+    tiempo -= 1;
+    mostrarEnSpan("tiempo", tiempo); 
+
+    if (puntos >= 6) {
+        clearInterval(intervaloTiempo); 
+        alert("¡Ganador!"); 
+    } else if (tiempo <= 0) {
+        clearInterval(intervaloTiempo); 
+        alert("Game Over"); 
+    }
 }
