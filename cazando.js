@@ -4,6 +4,7 @@ let gatoX = 0;
 let gatoY = 0;
 let comidaX = 0;
 let comidaY = 0;
+let puntos = 0;
 
 const ALTO_GATO=50;
 const ANCHO_GATO=50;
@@ -12,13 +13,15 @@ const ANCHO_COMIDA=50;
 
 
 function iniciarJuego(){
-    // Center the cat on the 500x500 canvas
+    
     gatoX = 225;
     gatoY = 225;
     
-    // Position food in the bottom right corner
+   
     comidaX = 450;
     comidaY = 450;
+
+    puntos = 0;
     
     graficarGato();
     graficarComida();
@@ -69,21 +72,23 @@ function actualizarVista() {
 
 }
 
+
 function detectarColision() {
     if (gatoX < comidaX + ANCHO_COMIDA &&
         gatoX + ANCHO_GATO > comidaX &&
         gatoY < comidaY + ALTO_COMIDA &&
         gatoY + ALTO_GATO > comidaY) {
         
-        alert("¡Atrapaste la comida!"); 
+        alert("¡Atrapaste la comida!");
         
-        puntos += 1; 
-        document.getElementById("puntos").innerText = puntos; 
-        comidaX = Math.floor(Math.random() * (500 - ANCHO_COMIDA));
-        comidaY = Math.floor(Math.random() * (500 - ALTO_COMIDA));
+        puntos += 1;
+        mostrarEnSpan("puntos", puntos); 
+        
+        comidaX = generarAleatorio(0, 500 - ANCHO_COMIDA);
+        comidaY = generarAleatorio(0, 500 - ALTO_COMIDA);
 
         limpiarCanva();
         graficarGato();
         graficarComida();
-    }
+ }
 }
