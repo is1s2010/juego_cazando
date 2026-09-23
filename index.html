@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego Cazando - Edición Neón</title>
+  <link rel="stylesheet" href="cazando.css"/>
+  <script src="utils.js"></script>
+</head>
+<body onload="iniciarJuego()">
+
+  <div class="contenedor-principal">
+    <h1>Juego Cazando</h1>
+    <p class="autor">Autor: is1s2010</p>
+    
+    <div class="panel">
+      <span class="marcador">Puntos: <span id="puntos">0</span></span>
+      <span class="marcador">Tiempo: <span id="tiempo">10</span></span>
+    </div>
+
+    <canvas id="areaJuego" width="500" height="500"></canvas>
+
+    <div class="controles">
+      <button class="btn-arriba" onclick="moverArriba()">⬆</button>
+      <button class="btn-izq" onclick="moverIzquierda()">⬅</button>
+      <button class="btn-abajo" onclick="moverAbajo()">⬇</button>
+      <button class="btn-der" onclick="moverDerecha()">➡</button>
+    </div>
+    
+    <button class="btn-reiniciar" onclick="reiniciarJuego()">REINICIAR</button>
+
+    <p id="mensaje"></p>
+  </div>
+
+  <script src="cazando.js"></script>
+</body>
+</html>
